@@ -2,6 +2,9 @@ use serde::Deserialize;
 use reqwasm::http::Request;
 use yew::prelude::*;
 use yew::{html, Callback};
+use components::header::Header;
+
+mod components;
 
 #[derive(Clone, PartialEq, Deserialize)]
 struct Video {
@@ -86,7 +89,8 @@ fn app() -> Html {
 
     html! {
         <>
-           <h1>{ "RustConf Explorer" }</h1>
+            <Header />
+            <h1>{ "RustConf Explorer" }</h1>
             <div>
                <h3>{"Videos to watch"}</h3>
                 <VideosList videos={(*videos).clone()} on_click={on_video_select.clone()} />
