@@ -3,6 +3,7 @@ use reqwasm::http::Request;
 use yew::prelude::*;
 use yew::{html, Callback};
 use components::header::Header;
+use components::base_button::BaseButton;
 
 mod components;
 
@@ -96,6 +97,7 @@ fn app() -> Html {
                 <VideosList videos={(*videos).clone()} on_click={on_video_select.clone()} />
             </div>
             { for details }
+            <BaseButton />
         </>
     }
 }
