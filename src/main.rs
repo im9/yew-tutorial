@@ -1,6 +1,7 @@
 use serde::Deserialize;
-use yew::prelude::*;
 use reqwasm::http::Request;
+use yew::prelude::*;
+use yew::{html, Callback};
 
 #[derive(Clone, PartialEq, Deserialize)]
 struct Video {
@@ -23,7 +24,9 @@ fn videos_list(VideosListProps { videos, on_click }: &VideosListProps) -> Html {
         let on_video_select = {
             let on_click = on_click.clone();
             let video = video.clone();
-            Callback::from(move |_| {
+            Callback::from(move | e: MouseEvent | {
+                e.prevent_default();
+                log::info!("click: {:?}", video.title);
                 on_click.emit(video.clone())
             })
         };
@@ -94,5 +97,6 @@ fn app() -> Html {
 }
 
 fn main() {
+    wasm_logger::init(wasm_logger::Config::default());
     yew::start_app::<App>();
 }
