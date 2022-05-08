@@ -67,7 +67,7 @@ fn app() -> Html {
     };
     let details = selected_video.as_ref().map(|video| html! {
             <VideoDetails video={video.clone()} />
-        });  
+        });
 
     let videos = use_state(|| vec![]);
         {
